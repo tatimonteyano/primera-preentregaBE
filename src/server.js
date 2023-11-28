@@ -1,21 +1,17 @@
-import express from "express";
-const server = express ()
-const  PORT = 8080;
-server.use (express.json());
-server.use (express.urlencoded({extended:true}));
+import express from 'express';
+import cartRoutes from './cartRoutes';
+import productRoutes from './productRoutes';
 
+const server = express();
+const PORT = 8080;
 
-const teams = {
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
 
-}
-server.get("/teams",(req, res) => {
-const { id } = req.params;
-const teamsSelected = teams.find (t => t.id === number (id));
-if (teamsSelected) return res.json(teamsSelected);
-return res.json ({error :""});
-})
+// Usa las rutas de cart y product como middleware
+server.use('/cart', cartRoutes);
+server.use('/product', productRoutes);
 
-
-server.listen (PORT, () =>{
-    console.log(`servidor iniciado en ${PORT}`)
+server.listen(PORT, () => {
+  console.log(`Servidor iniciado en ${PORT}`);
 });

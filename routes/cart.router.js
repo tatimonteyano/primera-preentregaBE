@@ -6,6 +6,7 @@ const router = Router()
 const cartManager = new CartManager('carritos.json')
 const carts = cartManager.getCarts()
 
+const productManager = new ProductManager('productos.json')
 
 router.post('/',(req,res)=>{
     res.send(cartManager.addCart())
